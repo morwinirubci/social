@@ -1,0 +1,16 @@
+.dialogItems{
+    display:flex;
+    padding: 20px;
+}
+.dialogItems > div+div{
+    margin-left: 4em;
+    border-left: 1px solid grey;
+    padding-left: 4em;
+}
+p{
+    margin:0;
+}
+.sendmsg{
+    margin-top:2em;
+}
+

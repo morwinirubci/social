@@ -1,0 +1,15 @@
+.profileFriend{
+    font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.profileFriend div{
+    flex:1;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+.profileFriend img{
+    width: 40px;
+    height: 40px;
+}

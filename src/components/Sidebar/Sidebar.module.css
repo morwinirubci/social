@@ -1,0 +1,23 @@
+.sidebar{
+    grid-area:side;
+    background: #8080802e;
+}
+    ul{
+        list-style:none;
+/*        padding-left:10px;*/
+    }
+.sidebar a{
+    color:#a32828;
+    text-decoration:none;
+}
+a.active{
+    color:#b91e1e;
+    font-weight:700;
+}
+
+
+.friend{
+    margin-top: 2em;
+    border-top: 3px solid #b91e1e;
+    font-size: 24px;
+}
