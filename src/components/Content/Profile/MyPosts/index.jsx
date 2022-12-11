@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from './Post';
-import {addPostActionCreator, updateTextFieldActionCreator} from '../../../../redux/profile-reducer';
+
 
 
 
@@ -14,12 +14,13 @@ const MyPosts = (props) => {
     let linkElementArea = React.createRef();
 
     let addPostBtn = () => {
-        props.dispatch(addPostActionCreator());
+        props.addPost();
+//        props.dispatch(addPostActionCreator());
     };
 
     let onChangeNewText = () => {
         let text = linkElementArea.current.value;
-        props.dispatch(updateTextFieldActionCreator(text));
+        props.updateTextField(text);
 
     }
 

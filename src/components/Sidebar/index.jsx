@@ -5,6 +5,7 @@ import FriendList from './FriendList';
 
 
 const Sidebar = (props) => {
+
     let friendsListElem = props.state.friendsPage.friendsList.map(newFriendsList => <FriendList id={newFriendsList.id} icon={newFriendsList.icon} name={newFriendsList.name} />)
 
     return (

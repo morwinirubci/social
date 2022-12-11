@@ -6,17 +6,17 @@ import style from './index.module.css';
 import './components/Content/Profile/Profile.css';
 import './components/Header/Header.scss';
 import './components/Sidebar/Sidebar.module.css';
-
+import SidebarContainer from './components/Sidebar/SidebarContainer'
 
 
 
 function App (props) {
-
+console.log(props)
   return (
           <div className={style.social_page}>
               <Header/>
-              <Sidebar state={props.state}/>
-              <Content state={props.state} dispatch={props.dispatch} />
+              <Sidebar state={props.store.getState()} />
+              <Content />
           </div>
 
   );
