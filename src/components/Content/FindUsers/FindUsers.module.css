@@ -1,0 +1,23 @@
+.avatar{
+    display: flex;
+    flex-direction: column;
+    width:30%;
+}
+.avatar img{
+    width:10%;
+    height:10%;
+}
+.list{
+    display:flex;
+    font-size:16px;
+    align-items:center;
+    width:100px;
+}
+.listItem{
+    font-weight:600;
+    font-size:20px;
+}
+.active{
+    font-weight:600;
+    font-size:20px;
+}

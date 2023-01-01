@@ -14,6 +14,7 @@ const Sidebar = (props) => {
                     <ul className="sidebar__list">
                         <li><NavLink className={({ isActive }) =>(isActive ? style.active : "")} to="/profile">Profile</NavLink></li>
                         <li><NavLink className={({ isActive }) =>(isActive ? style.active : "")} to="/dialogs">Messages</NavLink></li>
+                        <li><NavLink className={({ isActive }) =>(isActive ? style.active : "")} to="/users">Users</NavLink></li>
                         <li><NavLink className={({ isActive }) =>(isActive ? style.active : "")} to="/news">News</NavLink></li>
                         <li><NavLink className={({ isActive }) =>(isActive ? style.active : "")} to="/music">Music</NavLink></li>
                         <li><NavLink className={({ isActive }) =>(isActive ? style.active : "")} to="/settings">Settings</NavLink></li>

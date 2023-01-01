@@ -7,6 +7,7 @@ import Friends from './Friends';
 import {Routes, Route} from 'react-router-dom';
 import style from '../../index.module.css';
 import DialogsContainer from './Dialogs/DialogsContainer'
+import FindUsersContainer from "./FindUsers/FindUsersContainer";
 function Content (props) {
 
 
@@ -20,6 +21,7 @@ function Content (props) {
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/settings' element={<Settings/>}/>
                     <Route path='/friends' element={<Friends/>}/>
+                    <Route path='/users' element={<FindUsersContainer/>}/>
                 </Routes>
             </div>
 
