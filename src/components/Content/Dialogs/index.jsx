@@ -1,36 +1,53 @@
-import React from 'react';
-import DialogItem from './DialogItem/';
-import Messages from './Messages/';
-import style from './Dialogs.module.css';
+import React from "react";
+import DialogItem from "./DialogItem/";
+import Messages from "./Messages/";
+import style from "./Dialogs.module.css";
+import { Navigate } from "react-router-dom";
+import {useForm} from "react-hook-form";
 
 const Dialogs = (props) => {
-let dataElement = props.dialogPage.dialogDate.map(dialogMap => <DialogItem id={dialogMap.id} name={dialogMap.name} personNum={dialogMap.personNum}/>);
-let messageElement = props.dialogPage.messageData.map(messageMap =>  <Messages id={messageMap.id} message={messageMap.message}/>);
 
-    let linkElementMsg = React.createRef();
+  const {register, formState:{errors,isValid},handleSubmit, reset} = useForm ({mode:"onBlur"})
 
-    let addMessageBtn = () => {
-        props.addMessage();
-    };
-    let updateMessageField = () => {
-        let textMsg = linkElementMsg.current.value;
-        props.updateMessage(textMsg)
-    };
 
-    return (
-            <div className={style.dialogItems}>
-                    <div className={style.dialogsItem}>
-                        {dataElement}
-                    </div>
-                    <div className={style.dialogsItem}>
-                        {messageElement}
-                        <div className={style.sendmsg}>
-                            <textarea ref={linkElementMsg} onChange={ updateMessageField }  value={props.dialogPage.newDialogMessage} placeholder="Add message.."></textarea>
-                            <button onClick={addMessageBtn}>Send</button>
-                        </div>
-                    </div>
 
-            </div>
-    )
-}
+
+  let dataElement = props.dialogPage.dialogDate.map((dialogMap) => (
+    <DialogItem
+      id={dialogMap.id}
+      name={dialogMap.name}
+      personNum={dialogMap.personNum}
+    />
+  ));
+  let messageElement = props.dialogPage.messageData.map((messageMap) => (
+    <Messages id={messageMap.id} message={messageMap.message} />
+  ));
+
+ 
+
+  let onSubmit = (data) => {
+
+    props.addMessage(data.textField);
+    reset();
+  }
+
+
+  return (
+    <div className={style.dialogItems}>
+      <div className={style.dialogsItem}>{dataElement}</div>
+      <div className={style.dialogsItem}>
+        {messageElement}
+        <div className={style.sendmsg}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <textarea
+            {...register("textField")}
+            placeholder="Add message.."
+          ></textarea>
+          <button >Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
 export default Dialogs;

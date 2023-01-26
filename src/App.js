@@ -1,20 +1,34 @@
-import React from 'react';
-import Header from './components/Header';
+import React, { useEffect } from 'react';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Sidebar from './components/Sidebar';
 import Content from './components/Content';
 import style from './index.module.css';
 import './components/Content/Profile/Profile.css';
 import './components/Header/Header.scss';
 import './components/Sidebar/Sidebar.module.css';
-import SidebarContainer from './components/Sidebar/SidebarContainer'
+import { connect } from 'react-redux';
+import {initializeApp} from './redux/app-reducer';
+import Preloader from './components/Preloader/Preloader';
+
 
 
 
 function App (props) {
-console.log(props)
+
+  
+  useEffect(()=>{
+    props.initializeApp();
+  });
+
+  
+  if (!props.initialized){
+    
+    return <Preloader/>
+  }
+
   return (
           <div className={style.social_page}>
-              <Header/>
+              <HeaderContainer/>
               <Sidebar state={props.store.getState()} />
               <Content />
           </div>
@@ -22,4 +36,9 @@ console.log(props)
   );
 }
 
-export default App;
+let mapStateToProps = (state) => {
+  return{
+      initialized: state.app.initialized,
+  }
+}
+export default connect(mapStateToProps,{initializeApp})(App);

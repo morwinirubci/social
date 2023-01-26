@@ -1,25 +1,30 @@
 import Dialogs from '../Dialogs' ;
 import {connect} from 'react-redux';
-import {updateMessageFieldBtnActionCreator, addMessageBtnActionCreator} from "../../../redux/dialog-reducer";
+import {addMessageBtnActionCreator} from "../../../redux/dialog-reducer";
+import { withAithRedirect } from '../../../hoc/withAuthRedirect';
+import { compose } from 'redux';
+
+
+
 
 let mapStateToProps = (state) => {
     return {
-        dialogPage: state.dialogPage
+        dialogPage: state.dialogPage,
     }
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateMessage: (textMsg) => {
-            dispatch(updateMessageFieldBtnActionCreator(textMsg));
-            },
-        addMessage: () => {
-            dispatch(addMessageBtnActionCreator());
+        addMessage: (newMessage) => {
+            dispatch(addMessageBtnActionCreator(newMessage));
         }
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAithRedirect
+)(Dialogs);
 
 
 
-export default DialogsContainer;
+

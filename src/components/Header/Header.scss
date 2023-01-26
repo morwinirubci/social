@@ -4,4 +4,25 @@
     img{
         width:5%;
     }
+    
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-right: 3em;
+    padding-top: 1em;
+    
+    a{
+        color: #b91e1e;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid #b91e1e;
+        padding: 5px 10px;
+        transition: .2s;
+    }
+    a:hover{
+        background-color: #b91e1e;
+        color: white;
+    }
 }

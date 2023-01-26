@@ -1,41 +1,53 @@
-import React from 'react';
-import Post from './Post';
-
-
-
-
+import React from "react";
+import Post from "./Post";
+import { useForm } from "react-hook-form";
 
 const MyPosts = (props) => {
+ 
+  const {
+    register,
+    formState: { errors, isValid },
+    reset,
+    handleSubmit,
+  } = useForm({ mode: "onBlur" });
+
+
+  let onSubmit = (data) => {
+
+        alert(data.textAreaField)
+        props.addPost(data.textAreaField);
+        reset();
+  }
+
+  let postElement = props.profilePage.postData.map((postNew) => (
+    <Post id={postNew.id} message={postNew.message} likeCount={postNew.like} />
+  ));
 
 
 
-    let postElement = props.profilePage.postData.map(postNew =>  <Post id={postNew.id} message={postNew.message} likeCount={postNew.like}/>);
-
-    let linkElementArea = React.createRef();
-
-    let addPostBtn = () => {
-        props.addPost();
-//        props.dispatch(addPostActionCreator());
-    };
-
-    let onChangeNewText = () => {
-        let text = linkElementArea.current.value;
-        props.updateTextField(text);
-
-    }
 
 
-    return (
-            <div className="posts">
-                <div>
-                    <textarea ref = {linkElementArea} onChange = { onChangeNewText } value={props.profilePage.newTextChange} placeholder="New post..."></textarea>
-                    <button onClick={addPostBtn}>Add post </button>
-                </div>
-                <div>
-                    {postElement}
-                </div>
-            </div>
-    )
+
+  return (
+    <div className="posts">
+      <div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <textarea
+            {...register("textAreaField",
+            {required: true,
+            minLength:{
+              value: 5,
+              message: "Минимум 5 символов"
+            } })}
+            placeholder="New post..."
+          ></textarea>
+          <div>{errors?.textAreaField && (<p>{errors?.textAreaField?.message || "Error"}</p>)}</div>
+          <button disabled={!isValid}>Add post </button>
+        </form>
+      </div>
+      <div>{postElement}</div>
+    </div>
+  );
 };
 
 export default MyPosts;
