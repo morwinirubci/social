@@ -27,39 +27,33 @@ export const setUserData = (id, email, login, isAuth) => ({
   data: { id, email, login, isAuth },
 });
 
-export const authThunkCreator = () => (dispatch) => {
-  authAPI.authUser()
-  .then((response) => {
-    let { id, email, login } = response.data.data;
-    if (response.data.resultCode === 0) {
-        dispatch(setUserData(id, email, login, true));
-    }
-  });
+export const authThunkCreator = () => async (dispatch) => {
+  let response = await authAPI.authUser();
+  let { id, email, login } = response.data.data;
+  if (response.data.resultCode === 0) {
+    dispatch(setUserData(id, email, login, true));
+  }
 };
 
+export const loginThunkCreator =
+  (email, password, rememberMe, setError) => async (dispatch) => {
+    let response = await authAPI.loginUser(email, password, rememberMe);
 
-export const loginThunkCreator = (email, password, rememberMe, setError) => (dispatch) => {
-  authAPI.loginUser(email, password, rememberMe)
-  .then((response) => {
-   
     if (response.data.resultCode === 0) {
-        dispatch(authThunkCreator())
+      dispatch(authThunkCreator());
     } else {
-      setError('server',{
-        message: response.data.messages
-      })
-      console.log(setError)
+      setError("server", {
+        message: response.data.messages,
+      });
+      console.log(setError);
     }
-  });
-};
+  };
 
-export const logoutThunkCreator = () => (dispatch) => {
-  authAPI.logoutUser()
-  .then((response) => {
-    if (response.data.resultCode === 0) {
-        dispatch(authThunkCreator(null, null, null, false))
-    }
-  });
+export const logoutThunkCreator = () => async (dispatch) => {
+  let response = await authAPI.logoutUser();
+  if (response.data.resultCode === 0) {
+    dispatch(authThunkCreator(null, null, null, false));
+  }
 };
 
 export default authReducer;
