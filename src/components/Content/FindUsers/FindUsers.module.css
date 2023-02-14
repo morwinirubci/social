@@ -11,7 +11,7 @@
     display:flex;
     font-size:16px;
     align-items:center;
-    width:100px;
+   
 }
 .listItem{
     font-weight:600;
@@ -20,4 +20,12 @@
 .active{
     font-weight:600;
     font-size:20px;
+}
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pagination ul{
+    padding: 0 10px;
 }

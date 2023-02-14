@@ -8,10 +8,10 @@ let initialState = {
         {id: 4, name: 'Гриша', personNum: '4'}
     ],
     messageData: [
-        {id: 1, message: 'Приветики'},
-        {id: 2, message: 'Как делишечки?'},
-        {id: 3, message: 'Как здоровьице?'},
-        {id: 4, message: 'Как мама?'}
+        {id: 1, message: 'Hello'},
+        {id: 2, message: 'How are you?'},
+        {id: 3, message: 'Im ok'},
+        {id: 4, message: 'Message'}
     ],
 };
 

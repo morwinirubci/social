@@ -1,30 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./FindUsers.module.css";
+import Paginator from "./Paginator/Paginator";
 
 const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pagesNum = [];
-  for (let i = 1; i <= pagesCount; i++) {
-    pagesNum.push(i);
-  }
+  
+  
 
   return (
     <div>
-      <ul className={styles.list}>
-        {pagesNum.map((p) => {
-          return (
-            <li
-              className={props.currentPage === p && styles.listItem}
-              onClick={(e) => {
-                props.onPageChange(p);
-              }}
-            >
-              {p}
-            </li>
-          );
-        })}
-      </ul>
+
+      <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} onPageChange={props.onPageChange} currentPage={props.currentPage}/>
+
       {props.usersPage.map((user) => (
         <div key={user.id}>
           <div className={styles.avatar}>

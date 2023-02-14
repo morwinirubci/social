@@ -8,9 +8,9 @@ const SET_STATUS = "SET_STATUS";
 let initialState = {
   postData: [
     { id: 1, message: "Hello, world!", like: "12" },
-    { id: 2, message: "How are you??", like: "5" },
-    { id: 3, message: "Che,che", like: "0" },
-    { id: 4, message: "Opa, nihua", like: "56" },
+    { id: 2, message: "Post message", like: "5" },
+    { id: 3, message: "Today I am learning react", like: "0" },
+    { id: 4, message: "Today too", like: "56" },
   ],
   profile: "",
   status: ""
